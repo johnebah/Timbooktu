@@ -1,0 +1,1830 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  .timbooktu-title {
+    font-size: 36px;
+    .tuiites-title {
+    font-size: 36px;
+  }
+}
+  
+  .timbooktu-content {
+    font-size: 16px;
+    text-align: left; /* Easier to read on mobile */
+  }
+}
+
+html, body {
+  font-family: 'Inter', sans-serif;
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Header */
+.header-section {
+  background-color: #000;
+  border-bottom: 1px solid #222;
+}
+
+.logo {
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: 'Fredoka One', cursive;
+  color: #fff !important; /* Override Bootstrap */
+}
+
+/* Customize Bootstrap Nav Links */
+.nav .nav-link,
+.navbar-nav .nav-link {
+  color: #fff !important;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 0rem;
+  margin-right: 60px;
+}
+
+.nav .nav-link:hover,
+.navbar-nav .nav-link:hover {
+  color: #ccc !important;
+}
+
+/* Dropdown Menu Customization */
+.dropdown-menu-dark {
+  background-color: #000;
+  border: 1px solid #333;
+}
+
+.dropdown-item {
+  color: #ccc;
+  font-size: 14px;
+}
+
+.dropdown-item:hover {
+  background-color: #222;
+  color: #fff;
+}
+
+/* Search Bar Customization */
+.search-bar {
+  min-width: 200px;
+}
+
+.search-bar input {
+  background-color: transparent !important;
+  border-color: #333 !important;
+  color: #fff !important;
+}
+
+.search-bar input:focus {
+  background-color: transparent !important;
+  border-color: #555 !important;
+  box-shadow: none !important;
+  color: #fff !important;
+}
+
+.search-bar input::placeholder {
+  color: #999 !important;
+}
+
+.user-actions {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* Hero Section */
+.hero {
+  background-color: #000;
+  padding: 150px 0 30px;
+
+  /* overflow: hidden; Removed to prevent clipping */
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column; /* Stack vertically on desktop too */
+  justify-content: center;
+  align-items: flex-start; /* Left align like mobile preference */
+  position: relative;
+  gap: 50px; /* Space between text and image */
+}
+
+.hero-text {
+  flex: 0 0 auto;
+  width: 100%;
+  z-index: 2;
+  text-align: left; /* Explicitly left align */
+}
+
+.hero-text h1 {
+  font-size: 75px; /* Very large */
+  font-weight: 400; /* Fredoka One is inherently bold */
+  line-height: 0.9;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: 'Chango', cursive;
+  color: #d2cac1; /* Warmer beige */
+  margin-bottom: 5px;
+}
+
+.hero-subtitle {
+  font-size: 12px;
+  margin-top: 0px;
+  color: #aaa;
+  font-family: 'Della Respira', serif;
+}
+
+.hero-image {
+  flex: 0 0 auto;
+  width: 100%; /* Full width of container */
+  max-width: 100%;
+  height: auto; /* Allow natural height */
+  aspect-ratio: 16/9; /* Good cinematic ratio for desktop */
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Filter removed to show original colors */
+}
+
+/* Featured Post Section */
+.featured-post {
+  background-color: #DDD6CC; /* Warmer beige */
+  padding: 100px 0;
+  color: #000;
+}
+@media (max-width: 768px) {
+  .featured-post {
+    padding-bottom: 0px;
+  }
+}
+
+.section-title {
+  font-size: 35px;
+  font-weight: 400; /* Fredoka One is inherently bold */
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Chango', cursive;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 80px;
+  letter-spacing: 23px; /* Very wide spacing */
+  font-family: 'Della Respira', serif;
+  text-transform: capitalize;
+}
+
+.featured-content {
+  display: flex;
+  gap: 80px;
+  align-items: center;
+  justify-content: center; /* Center the content */
+}
+
+.featured-image {
+  flex: 0 0 500px;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.featured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Filter removed to show original colors */
+}
+
+.featured-quote {
+  flex: 0 0 600px; /* Constrain width */
+  padding: 20px 0;
+}
+
+.featured-quote blockquote {
+  font-size: 16px;
+  line-height: 1.6;
+  font-family: 'Della Respira', serif; /* Serif font for quote */
+  border-left: 4px solid #000;
+  padding-left: 20px;
+  color: #333;
+  margin: 0;
+}
+
+/* Thoughts Section */
+.thoughts {
+  background-color: #000;
+  padding: 100px 0;
+  color: #fff;
+}
+
+.thoughts .section-title {
+  color: #DDD6CC; /* Warm beige */
+}
+
+.carousel-wrapper {
+  position: relative;
+  margin: 50px 0;
+}
+
+.carousel {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto; /* Allow scrolling */
+  scroll-behavior: smooth;
+  padding: 20px 0;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.carousel::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome/Safari */
+}
+
+.carousel-item {
+  display: block !important; /* Override Bootstrap's display: none */
+  margin-right: 0 !important; /* Override Bootstrap's margin */
+  flex: 0 0 400px; /* Wider items */
+  text-align: center;
+  transition: none !important; /* Remove Bootstrap transition */
+  text-decoration: none;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 400px; /* Taller images */
+  object-fit: cover;
+  border-radius: 20px; /* More rounded corners */
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.carousel-label {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent; /* No background */
+  border: none;
+  color: #d2cac1; /* Blue arrows */
+  font-size: 60px; /* Larger arrows */
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace; /* Ensure arrows look like arrows */
+  font-weight: 100;
+}
+
+.carousel-btn:hover {
+  color: #0056b3; /* Darker blue on hover */
+  background-color: transparent;
+}
+
+.carousel-btn.prev {
+  left: -60px; /* Move outside */
+}
+
+.carousel-btn.next {
+  right: -60px; /* Move outside */
+}
+
+.view-all-btn {
+  display: table;
+  margin: 40px auto 0;
+  padding: 10px 24px;
+  background-color: #d2cac1; /* Light green */
+  border: none;
+  border-radius: 30px;
+  color: #000;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: 'Della Respira', serif;
+  width: auto;
+  max-width: 200px;
+}
+
+.view-all-btn:hover {
+  background-color: #d2cac1;
+}
+
+.view-all-btns {
+  display: table;
+  margin: 40px auto 0;
+  padding: 10px 24px;
+  background-color: #000; /* Light green */
+  border: none;
+  border-radius: 30px;
+  color: #d2cac1;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: 'Della Respira', serif;
+  width: auto;
+  max-width: 200px;
+}
+
+.view-all-btnss:hover {
+  background-color: #000;
+}
+.view-all-btnss {
+  display: table;
+  margin: 40px auto 0;
+  padding: 15px 30px;
+  background-color: #000; /* Light green */
+  border: none;
+  border-radius: 30px;
+  color: #d2cac1;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: 'Della Respira', serif;
+  width: auto;
+  max-width: 200px;
+}
+
+.view-all-btnss:hover {
+  background-color: #000;
+}
+
+/* Fotografie Section */
+.fotografie {
+  background-color: #DDD6CC; /* Warm beige */
+  padding: 100px 0;
+  
+  color: #000;
+  position: relative;
+}
+
+.fotografie-grid {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto; /* Enable scrolling */
+  scroll-behavior: smooth;
+  margin: 50px 0;
+  padding: 20px 0;
+  scrollbar-width: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.fotografie-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.fotografie-item {
+  flex: 0 0 400px; /* Fixed width */
+  height: 400px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.fotografie-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+
+}
+
+.fotografie-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Our Thing Section */
+.our-thing {
+  background-color: #000;
+  padding: 100px 0;
+  color: #fff;
+  text-align: center;
+}
+
+.our-thing .section-title {
+  color: #DDD6CC;
+  font-family: 'Chango', cursive;
+  margin-bottom: 60px;
+}
+@media (max-width: 968px) {
+  .our-thing-title {
+    font-size: 20px;
+    text-align: left;
+  }
+}
+
+.no-artwork {
+  margin: 50px 0;
+  font-size: 16px;
+  color: #fff;
+  text-align: left; /* Aligned left as per image */
+}
+
+/* Subscribe Section */
+.subscribe {
+  background-color: #d2cac1;
+  padding: 200px 0 200px;
+  text-align: center;
+}
+
+.subscribe .section-title {
+  color: #000;
+  margin-bottom: 50px;
+  font-family: 'Chango', cursive;
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+.subscribe-form {
+  display: flex;
+  justify-content: center;
+}
+
+.subscribe-form input {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #000;
+  border: none;
+  font-size: 16px;
+  color: #d2cac1;
+  text-align: center;
+  /* Rough edges effect */
+  clip-path: polygon(
+    2% 0%, 98% 0%, 100% 2%, 99% 5%, 100% 8%, 98% 10%, 100% 12%, 99% 15%, 100% 18%, 
+    98% 20%, 100% 22%, 99% 25%, 100% 28%, 98% 30%, 100% 32%, 99% 35%, 100% 38%, 
+    98% 40%, 100% 42%, 99% 45%, 100% 48%, 98% 50%, 100% 52%, 99% 55%, 100% 58%, 
+    98% 60%, 100% 62%, 99% 65%, 100% 68%, 98% 70%, 100% 72%, 99% 75%, 100% 78%, 
+    98% 80%, 100% 82%, 99% 85%, 100% 88%, 98% 90%, 100% 92%, 99% 95%, 100% 98%, 
+    98% 100%, 2% 100%, 0% 98%, 1% 95%, 0% 92%, 2% 90%, 0% 88%, 1% 85%, 0% 82%, 
+    2% 80%, 0% 78%, 1% 75%, 0% 72%, 2% 70%, 0% 68%, 1% 65%, 0% 62%, 2% 60%, 
+    0% 58%, 1% 55%, 0% 52%, 2% 50%, 0% 48%, 1% 45%, 0% 42%, 2% 40%, 0% 38%, 
+    1% 35%, 0% 32%, 2% 30%, 0% 28%, 1% 25%, 0% 22%, 2% 20%, 0% 18%, 1% 15%, 
+    0% 12%, 2% 10%, 0% 8%, 1% 5%, 0% 2%
+  );
+}
+
+.subscribe-form input:focus {
+  outline: none;
+}
+
+.subscribe-form input::placeholder {
+  color: #d2cac1;
+}
+
+/* Footer */
+.footer {
+  background-color: #000;
+  padding: 100px 0 100px 350px;
+  padding-left: 0px;
+  padding-bottom: 250px;
+  color: #d2cac1;
+  border-top: none;
+  font-family: 'Della Respira', serif;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column; /* Always stack vertically */
+  gap: 40px; /* Space between Address and Socials */
+  align-items: flex-start; /* Left align */
+  margin-top: 0px;
+}
+
+.footer-location {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.footer-location p {
+  font-family: 'Della Respira', serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pin-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.pin-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.footer-social-wrapper {
+  display: flex;
+  flex-direction: row; /* Horizontal alignment for Icons + Text */
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.social-icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: opacity 0.3s;
+  text-decoration: none;
+}
+
+.social-icon:hover {
+  opacity: 0.8;
+}
+
+.social-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.footer-text {
+  font-family: 'Della Respira', serif;
+  font-size: 16px;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* On Timbooktu Section */
+.timbooktu-section {
+  padding: 80px 0;
+  background-color: #1a1a1a; /* Slightly lighter dark background for contrast or keep black */
+  min-height: 80vh;
+}
+
+.timbooktu-title {
+  text-align: center;
+  font-family: 'Chango', cursive;
+  font-size: 64px;
+  color: #fff;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.timbooktu-content {
+  max-width: 900px;
+  margin: 0 auto;
+  color: #fff;
+  font-family: 'Della Respira', serif;
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+@media (max-width: 968px) {
+  .timbooktu-title {
+  text-align: left;
+  font-family: 'Chango', cursive;
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.timbooktu-content {
+  max-width: 900px;
+  margin: 0 auto;
+  color: #fff;
+  font-family: 'Della Respira', serif;
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: left;
+}
+}
+
+.timbooktu-content p {
+  margin-bottom: 30px;
+}
+
+.timbooktu-signoff {
+  margin-top: 60px;
+}
+
+.signature {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+/* Tui'ites Section */
+.tuiites-section {
+  padding: 80px 0;
+  background-color: #111; /* Dark background */
+}
+
+.tuiites-title {
+  text-align: center;
+  font-family: 'Chango', cursive;
+  font-size: 64px;
+  color: #fff;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.tuiites-subtitle {
+  text-align: center;
+  font-family: 'Della Respira', sans-serif;
+  font-size: 16px;
+  color: #ccc;
+  margin-bottom: 60px;
+}
+@media(max-width: 968px) {
+  .tuiites-title {
+    font-size: 20px;
+    text-align: left;
+  }
+  .tuiites-subtitle{
+    text-align: left;
+  }
+}
+
+.testimonials-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.testimonial-item {
+  margin-bottom: 50px;
+}
+
+.testimonial-item .quote {
+  font-family: 'Chango', cursive; /* Using Chango for the bold impact as seen in image, or could be a heavy sans-serif */
+  font-size: 20px;
+  color: #fff;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+/* Fallback if Chango is too decorative for long text, check image carefully. 
+   Image text looks like a heavy sans-serif, possibly the same as headers but smaller? 
+   Let's stick to a heavy weight Inter or Chango if it matches well. 
+   The image text is very blocky. Chango is blocky. */
+   
+.testimonial-item .author {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #ddd;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.testimonial-item .location {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #ddd;
+  margin: 0;
+}
+
+/* Comment Form */
+.comment-form-wrapper {
+  max-width: 600px;
+  margin: 80px auto 0;
+  background-color: #1a1a1a;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.form-title {
+  text-align: center;
+  font-family: 'Chango', cursive;
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.comment-form label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+}
+
+.comment-form .form-control {
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 12px;
+}
+
+.comment-form .form-control:focus {
+  background-color: #444;
+  box-shadow: none;
+  color: #fff;
+}
+
+.comment-form .form-control::placeholder {
+  color: #888;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #d2cac1; /* Light green */
+  border: none;
+  border-radius: 30px;
+  color: #000;
+  font-weight: 900;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+  font-family: 'Inter', sans-serif;
+}
+
+.submit-btn:hover {
+  background-color: #b0d685;
+}
+
+/* La Compos Mentis Section */
+.lacomposmentis-section {
+  padding: 80px 0;
+  background-color: #000;
+  min-height: 100vh;
+  color: #d2cac1;
+}
+
+.lacomposmentis-title {
+  text-align: center;
+  font-family: 'Chango', cursive;
+  font-size: 64px;
+  color: #fff;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.lacomposmentis-subtitle {
+  text-align: center;
+  font-family: 'Della Respira', sans-serif;
+  font-size: 16px;
+  color: #ccc;
+  margin-bottom: 60px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.blog-card {
+  background-color: transparent;
+  border-radius: 0;
+  overflow: hidden;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.blog-image {
+  width: 100%;
+  height: 250px;
+  background-color: transparent;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.blog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.blog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.blog-date {
+  font-family: 'Della Respira', sans-serif;
+  font-size: 12px;
+  color: #d2cac1;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.blog-title {
+  font-family: 'Della Respira', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #d2cac1;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.blog-excerpt {
+  font-family: 'Della Respira', sans-serif;
+  font-size: 14px;
+  color: #d2cac1;
+  margin-bottom: 20px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: center;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.read-more-btn {
+  background: #d2cac1;
+  border: 1px solid #000;
+  padding: 8px 20px;
+  font-family: 'Della Respira', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: #000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto;
+  border-radius: 20px;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.read-more-btn:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Responsive for Blog Grid */
+@media (max-width: 968px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .lacomposmentis-title {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 640px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .lacomposmentis-title {
+    font-size: 32px;
+  }
+  
+  .lacomposmentis-subtitle {
+    font-size: 14px;
+    padding: 0 20px;
+  }
+}
+
+/* Guestnetno Section */
+.guestnetno-section {
+  padding: 80px 0;
+  background-color: #000;
+  min-height: 100vh;
+  color: #fff;
+  text-align: center;
+}
+
+.guestnetno-title {
+  font-family: 'Chango', cursive;
+  font-size: 80px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.guestnetno-subtitle-wrapper {
+  margin-bottom: 50px;
+}
+
+.guestnetno-subtitle {
+  font-family: 'Della Respira', sans-serif;
+  font-size: 18px;
+  margin-bottom: 5px;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.guestnetno-author {
+  font-family: 'Della Respira', sans-serif;
+  font-size: 18px;
+}
+@media (max-width: 968px) {
+  .guestnetno-title {
+    font-size: 20px;
+    text-align: left;
+  }
+  .guestnetno-subtitle{
+    text-align: left;
+  }
+  .scroll-down-wrapper{
+    display:none;
+  }
+}
+
+.scroll-down-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 80px;
+}
+
+.scroll-down-circle {
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.guest-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  text-align: left;
+}
+
+.guest-card {
+  background-color: transparent;
+  color: #d2cac1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 200px;
+}
+
+.guest-date {
+  font-family: 'Della Respira', sans-serif;
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-transform: uppercase;
+}
+
+.guest-card-title {
+  font-family: 'Chango', cursive;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.guest-card-text {
+  font-family: 'Della Respira', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  /* flex-grow: 1; */
+}
+
+.read-more-pill {
+  background-color: #d2cac1;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 25px;
+  font-family: 'Della Respira', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.2s;
+  display: inline-block;
+  text-decoration: none;
+  color: #000;
+}
+
+.read-more-pill:hover {
+  transform: scale(1.05);
+}
+
+.read-more-pill.disabled,
+.read-more-pill[aria-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.read-more-pill.active {
+  background-color: #000;
+  color: #d2cac1;
+}
+
+.pagination-pill {
+  padding: 10px 16px;
+  font-size: 12px;
+}
+
+.quill-editor {
+  min-height: 180px;
+  padding: 0;
+}
+
+.quill-editor .ql-editor {
+  min-height: 140px;
+}
+
+.view-all-btn,
+.view-all-btns,
+.view-all-btnss {
+  text-decoration: none;
+}
+
+/* Responsive for Guest Grid */
+@media (max-width: 968px) {
+  .guest-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .guestnetno-title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .guest-grid {
+    grid-template-columns: 1fr;
+  }
+  .guestnetno-title {
+    font-size: 40px;
+  }
+  .guestnetno-subtitle {
+    font-size: 16px;
+    padding: 0 20px;
+  }
+}
+
+
+/* Rich Us Section */
+.rich-us-section {
+  padding: 80px 0;
+  background-color: #0d0d0d;
+  min-height: 100vh;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rich-us-title {
+  font-family: 'Chango', cursive;
+  font-size: 80px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.rich-us-subtitle {
+  font-family: 'Della Respira', sans-serif;
+  font-size: 18px;
+  margin: 0 auto 50px auto;
+  text-align: center;
+  color: #ccc;
+  max-width: 600px;
+}
+
+.rich-us-form-container {
+  background-color: #080808;
+  padding: 40px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  margin: 0 auto;
+}
+
+.rich-us-form-title {
+  font-family: 'Chango', cursive;
+  font-size: 32px;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.rich-us-form .form-control {
+  background-color: #333;
+  border: 1px solid #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 12px;
+}
+
+.rich-us-form .quill-editor {
+  padding: 0;
+  background-color: transparent;
+}
+
+.rich-us-form .quill-editor .ql-toolbar {
+  border-color: #444;
+  background-color: #111;
+}
+
+.rich-us-form .quill-editor .ql-container {
+  border-color: #444;
+  background-color: #333;
+}
+
+.rich-us-form .quill-editor .ql-editor {
+  color: #fff;
+}
+
+.rich-us-form .quill-editor .ql-stroke {
+  stroke: #fff;
+}
+
+.rich-us-form .quill-editor .ql-fill {
+  fill: #fff;
+}
+
+.rich-us-form .quill-editor .ql-picker {
+  color: #fff;
+}
+
+.rich-us-form .quill-editor .ql-picker-options {
+  background-color: #111;
+  border-color: #444;
+}
+
+.rich-us-form .form-control:focus {
+  background-color: #333;
+  border-color: #666;
+  box-shadow: none;
+  color: #fff;
+}
+
+.rich-us-form .form-control::placeholder {
+  color: #aaa;
+}
+
+.rich-us-submit-btn {
+  background-color: #d2cac1;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  width: 100%;
+  font-family: 'Della Respira', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.rich-us-submit-btn:hover {
+  background-color: #d2cac1;
+}
+
+@media (max-width: 968px) {
+  .rich-us-title {
+    font-size: 20px;
+    text-align: left;
+  }
+  .rich-us-subtitle{
+    text-align: left;
+  }
+}
+
+/* Blog Detail Section */
+.blog-detail-section {
+  padding: 80px 0;
+  background-color: #000;
+  min-height: 100vh;
+  color: #fff;
+}
+
+.blog-detail-title {
+  font-family: 'Chango', cursive;
+  font-size: 64px;
+  text-align: center;
+  margin-bottom: 60px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.blog-detail-content {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Della Respira', sans-serif;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #ddd;
+}
+
+.blog-detail-content p {
+  margin-bottom: 30px;
+}
+
+.blog-subheading {
+  font-family: 'Chango', cursive;
+  font-size: 32px;
+  margin: 40px 0 20px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.blog-divider {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.paw-icon {
+  font-size: 24px;
+  color: #555;
+}
+
+/* Audio Player */
+.audio-player-container {
+  margin: 40px 0;
+  background-color: transparent;
+  padding: 20px;
+  border-radius: 10px;
+}
+@media (max-width: 768px) {
+  .audio-player-container {
+    padding-bottom: 0px;
+  }
+}
+
+.audio-player {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.play-btn, .volume-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.progress-bar-container {
+  flex-grow: 1;
+  height: 4px;
+  background-color: #333;
+  border-radius: 2px;
+  position: relative;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+.time-display {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* Responsive for Blog Detail */
+@media (max-width: 768px) {
+  .blog-detail-title {
+    font-size: 40px;
+  }
+}
+
+/* Responsive for Rich Us */
+@media (max-width: 768px) {
+  .rich-us-title {
+    font-size: 50px;
+  }
+}
+
+/* Shop Section */
+.shop-section {
+  padding: 120px 0 80px;
+  background-color: #0d0d0d;
+  min-height: 100vh;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.shop-title {
+  font-family: 'Chango', cursive;
+  font-size: 80px;
+  margin-bottom: 60px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #e0e0e0;
+  letter-spacing: 2px;
+}
+
+.shop-content {
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 20px;
+}
+
+.shop-message {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Responsive for Shop */
+@media (max-width: 768px) {
+  .shop-title {
+    font-size: 50px;
+  }
+}
+
+/* Fotografie Page Section */
+.fotografie-page-section {
+  padding: 80px 0;
+  background-color: #000;
+  min-height: 100vh;
+  color: #fff;
+}
+
+.fotografie-page-title {
+  font-family: 'Chango', cursive;
+  font-size: 80px;
+  margin-bottom: 60px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 2px;
+}
+
+.fotografie-grid-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fotografie-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.fotografie-card {
+  background-color: transparent;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 350px;
+  aspect-ratio: 1/1;
+}
+
+.fotografie-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+}
+
+/* Responsive for Fotografie Page */
+@media (max-width: 992px) {
+  .fotografie-row {
+    flex-wrap: wrap;
+  }
+  
+  .fotografie-page-title {
+    font-size: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .fotografie-page-title {
+    font-size: 40px;
+  }
+  
+  .fotografie-card {
+    padding: 10px;
+  }
+
+  .rich-us-form-container {
+    padding: 20px;
+  }
+}
+
+/* Footer Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  .hero-subtitle {
+  font-size: 12px;
+  margin-top: 0px;
+  color: #d2cac1;
+  font-family: 'Della Respira', serif;
+}
+
+  .hero-image {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    height: 400px;
+    aspect-ratio: 3/2;
+  }
+
+  .featured-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .featured-quote blockquote {
+  font-size: 16px;
+  line-height: 1.6;
+  font-family: 'Della Respira', serif; /* Serif font for quote */
+  border-left: 4px solid white;
+  padding-left: 20px;
+  color: #333;
+  margin: 0;
+}
+.featured-post .section-title{
+  font-size: 20px;
+}
+.featured-post .section-subtitle{
+  letter-spacing: 10px;
+}
+  .featured-image {
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+  }
+
+  .featured-quote {
+    flex: 0 0 auto;
+    width: 100%;
+    text-align: center;
+  }
+
+  .featured-quote blockquote {
+    border-left: none;
+    border-top: none;
+    padding-left: 0;
+    padding-top: 20px;
+  }
+.thoughts .section-title {
+  font-size: 20px; /* Warm beige */
+}
+  /* Custom Mobile Nav Styles */
+  .navbar-toggler {
+    border-color: transparent !important;
+  }
+  
+  .navbar-toggler:focus {
+    box-shadow: none !important;
+  }
+
+  .fotografie-grid {
+    justify-content: flex-start; /* Allow scrolling from start */
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-location {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer-social-wrapper {
+    align-items: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .hero {
+    padding: 40px 0 60px;
+  }
+
+  .hero-text h1{
+    font-size: 20px; /* Reduced to fit mobile screen */
+    word-wrap: break-word;
+    text-align: left;
+  }
+  
+
+  .hero-subtitle {
+    font-size: 18px;
+    text-align: left;
+  }
+
+  .section-title {
+    font-size: 40px;
+  }
+  
+  .section-subtitle {
+    font-size: 16px;
+    letter-spacing: 4px;
+    margin-bottom: 40px;
+  }
+
+  .featured-post, .thoughts, .fotografie, .our-thing, .subscribe {
+    padding: 60px 0;
+  }
+
+  /* Thoughts Section Mobile Update */
+  .thoughts .carousel {
+    flex-direction: column;
+    overflow: visible;
+    gap: 40px;
+  }
+
+  .thoughts .carousel-item {
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .thoughts .carousel-item img {
+    height: auto;
+    width: 100%;
+    aspect-ratio: 3/4; /* Taller aspect ratio for mobile cards */
+  }
+
+  .thoughts .carousel-btn {
+    display: none;
+  }
+
+  .fotografie-item {
+    flex: 0 0 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    padding: 0 10px;
+  }
+  .fotografie .section-title{
+    font-size: 20px;;
+  }
+  .fotografie .carousel-btn {
+    display: flex !important;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    width: 40px;
+    height: 40px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #fff;
+    pointer-events: auto; /* Ensure clickable */
+    cursor: pointer;
+    border: none;
+  }
+
+  .fotografie .carousel-btn:hover {
+    background: rgba(0,0,0,0.5);
+  }
+
+  .fotografie .carousel-btn.prev {
+    left: 10px;
+  }
+
+  .fotografie .carousel-btn.next {
+    right: 10px;
+  }
+
+  .our-thing .section-title{
+    font-size: 20px;
+  }
+  
+
+  .carousel-item img {
+    height: 300px;
+  }
+
+  .carousel-btn {
+    display: none;
+  }
+  
+  
+  .view-all-btn,
+  .view-all-btns,
+  .view-all-btnss {
+    width: auto;
+    max-width: 200px;
+  }
+  @media (max-width: 768px){
+  .view-all-btn{
+    width: auto;
+    max-width: 200px;
+    margin-top: -30px;
+  }
+}
+  .subscribe .section-title{
+    font-size: 20px;
+  }
+
+
+
+  .subscribe-form input {
+    font-size: 14px;
+    padding: 15px;
+  }
+
+  /* Footer Mobile Optimization */
+  .footer {
+    padding: 40px 20px 60px; /* Reduced padding */
+    text-align: left;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 30px;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .footer-location {
+    flex-direction: row; /* Align icon left of text */
+    align-items: center;
+    gap: 15px;
+    text-align: left;
+  }
+
+  .footer-location p {
+    font-size: 14px; /* Reduced font size */
+    text-align: left;
+    margin: 0;
+  }
+
+  .pin-icon {
+    width: 24px; /* Smaller icon */
+    height: 24px;
+    flex-shrink: 0; /* Prevent icon from shrinking */
+  }
+
+  .footer-social-wrapper {
+    flex-direction: row; /* Side by side on mobile */
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .footer-social {
+    gap: 10px;
+    justify-content: flex-start;
+    flex-shrink: 0; /* Prevent icons from wrapping/shrinking too much */
+  }
+
+  .social-icon {
+    width: 20px; /* Slightly smaller icons to fit */
+    height: 20px;
+  }
+
+  .footer-text {
+    font-size: 10px; /* Much smaller font size to fit */
+    text-align: left;
+    word-break: break-all; /* Ensure long email doesn't overflow */
+    margin: 0;
+  }
+}
+
+/* Mobile Title & Subtitle Standardization Override - Hero Only */
+@media (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 30px !important;
+    text-align: left !important;
+    letter-spacing: normal !important;
+  }
+  .hero-subtitle {
+    font-size: 10px !important;
+    /* text-align: left !important;
+    letter-spacing: normal !important; */
+  }
+  .hero {
+  background-color: #000;
+  padding: 50px 0 20px;
+  padding-top: 70px;
+
+  /* overflow: hidden; Removed to prevent clipping */
+}
+
+  .hero-subtitle {
+    text-align: left !important;
+  }
+
+  .hero-content {
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  /* Specific padding for Hero section if needed to match previous look */
+  .hero .container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  .guestnetno-title{
+    font-size: 30px !important;
+    text-align: center !important;
+  }
+  .guestnetno-subtitle{
+    text-align: center !important;
+  }
+  .footer {
+  background-color: #000;
+  padding: 30px 0 30px 350px;
+  padding-left: 0px;
+  padding-bottom: 200px;
+  color: #d2cac1;
+  border-top: none;
+  font-family: 'Della Respira', serif;
+}
+.subscribe {
+  background-color: #d2cac1;
+  padding: 150px 0 150px;
+  text-align: center;
+}
+}
+
