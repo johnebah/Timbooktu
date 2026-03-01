@@ -3,8 +3,8 @@
 @section('title', 'Admin - TIIMBOOKTU')
 
 @php
-  $featuredImageUrl = $featuredPost->image_path ? asset('storage/app/public/' . $featuredPost->image_path) : asset('img/abt.jpeg');
-  $featuredAudioUrl = $featuredPost->audio_path ? asset('storage/app/public/' . $featuredPost->audio_path) : null;
+  $featuredImageUrl = $featuredPost->image_path ? asset($featuredPost->image_path) : asset('img/abt.jpeg');
+  $featuredAudioUrl = $featuredPost->audio_path ? asset($featuredPost->audio_path) : null;
 @endphp
 
 @push('styles')
@@ -322,7 +322,7 @@
                 <a class="read-more-pill" href="{{ route('admin.fotografie') }}">CANCEL</a>
               </div>
               <div class="mb-3">
-                <img src="{{ asset('storage/app/public/' . $editingPhotograph->image_path) }}" class="img-fluid rounded" alt="Photo">
+                <img src="{{ asset($editingPhotograph->image_path) }}" class="img-fluid rounded" alt="Photo">
               </div>
               <form class="rich-us-form" method="POST" action="{{ route('admin.photographs.update', $editingPhotograph) }}" enctype="multipart/form-data">
                 @csrf
@@ -365,7 +365,7 @@
             @foreach ($photographs as $photo)
               <div class="col-6 col-md-4 col-lg-3">
                 <div class="card bg-dark border-secondary h-100">
-                  <img src="{{ asset('storage/app/public/' . $photo->image_path) }}" class="card-img-top" alt="Photo">
+                  <img src="{{ asset($photo->image_path) }}" class="card-img-top" alt="Photo">
                   <div class="card-body">
                     <div class="small text-white-50 mb-2">{{ $photo->title }}</div>
                     <div class="d-grid gap-2">
@@ -617,7 +617,7 @@
                     <td style="max-width: 520px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ $richUsMessage->message }}</td>
                     <td>
                       @if ($richUsMessage->attachment_path)
-                        <a class="text-white text-decoration-none" href="{{ asset('storage/app/public/' . $richUsMessage->attachment_path) }}" target="_blank" rel="noopener noreferrer">VIEW</a>
+                        <a class="text-white text-decoration-none" href="{{ asset($richUsMessage->attachment_path) }}" target="_blank" rel="noopener noreferrer">VIEW</a>
                       @else
                         —
                       @endif

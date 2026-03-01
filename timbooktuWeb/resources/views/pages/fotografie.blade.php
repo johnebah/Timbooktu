@@ -25,7 +25,7 @@
             @foreach ($row as $photo)
               @php
                 $photoImageUrl = isset($photo->image_path)
-                  ? asset('storage/app/public/' . $photo->image_path)
+                  ? asset($photo->image_path)
                   : $photo->image_url;
               @endphp
               <div class="fotografie-card">

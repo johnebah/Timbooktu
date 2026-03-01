@@ -11,7 +11,9 @@
       <div class="blog-grid">
         @forelse ($thoughts as $thought)
           @php
-              ? asset('storage/app/public/' . $thought->image_path)
+            $thoughtImageUrl = $thought->image_path
+              ? asset($thought->image_path)
+              : asset('img/thought-card1.png');
             $thoughtDate = $thought->published_at ? $thought->published_at->format('F j, Y') : $thought->created_at->format('F j, Y');
             $thoughtExcerpt = \Illuminate\Support\Str::limit(strip_tags((string) ($thought->excerpt ?: $thought->body)), 140);
           @endphp
