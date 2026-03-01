@@ -19,7 +19,7 @@
           <p class="blog-date justify-content-center">📅 {{ $thoughtDate }}</p>
 
           @if ($thought->image_path)
-            <center><img src="{{ \Illuminate\Support\Facades\Storage::url($thought->image_path) }}" alt="{{ $thought->title }}" class="img-fluid rounded mb-4" /></center>
+            <center><img src="{{ asset('storage/' . $thought->image_path) }}" alt="{{ $thought->title }}" class="img-fluid rounded mb-4" /></center>
           @endif
 
           {!! $thought->body !!}
@@ -27,7 +27,7 @@
           @if ($thought->audio_path)
             <div class="audio-player-container mt-4">
               <audio class="w-100" controls preload="metadata">
-                <source src="{{ \Illuminate\Support\Facades\Storage::url($thought->audio_path) }}" />
+                <source src="{{ asset('storage/' . $thought->audio_path) }}" />
               </audio>
             </div>
           @endif

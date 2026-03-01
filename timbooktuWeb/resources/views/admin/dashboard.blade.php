@@ -3,8 +3,8 @@
 @section('title', 'Admin - TIIMBOOKTU')
 
 @php
-  $featuredImageUrl = $featuredPost->image_path ? Storage::url($featuredPost->image_path) : asset('img/abt.jpeg');
-  $featuredAudioUrl = $featuredPost->audio_path ? Storage::url($featuredPost->audio_path) : null;
+  $featuredImageUrl = $featuredPost->image_path ? asset('storage/' . $featuredPost->image_path) : asset('img/abt.jpeg');
+  $featuredAudioUrl = $featuredPost->audio_path ? asset('storage/' . $featuredPost->audio_path) : null;
 @endphp
 
 @push('styles')
@@ -63,6 +63,33 @@
             input.value = quill.root.innerHTML;
           });
         }
+      });
+
+      // Client-side file size validation
+      const maxImageSize = 4 * 1024 * 1024; // 4MB
+      const maxAudioSize = 20 * 1024 * 1024; // 20MB
+      const maxGenericSize = 10 * 1024 * 1024; // 10MB default
+
+      document.querySelectorAll('input[type="file"]').forEach(function(input) {
+        input.addEventListener('change', function() {
+          if (!this.files || this.files.length === 0) return;
+          
+          const file = this.files[0];
+          const accept = this.getAttribute('accept') || '';
+          const isAudio = accept.includes('audio');
+          const isImage = accept.includes('image');
+          
+          if (isImage && file.size > maxImageSize) {
+            alert('Image size exceeds the 4MB limit. Please select a smaller file. Large files may cause uploads to hang and fail silently.');
+            this.value = '';
+          } else if (isAudio && file.size > maxAudioSize) {
+            alert('Audio size exceeds the 20MB limit. Please select a smaller file. Large files may cause uploads to hang and fail silently.');
+            this.value = '';
+          } else if (!isImage && !isAudio && file.size > maxGenericSize) {
+            alert('File size exceeds the limit. Please select a smaller file.');
+            this.value = '';
+          }
+        });
       });
     });
   </script>
@@ -295,7 +322,7 @@
                 <a class="read-more-pill" href="{{ route('admin.fotografie') }}">CANCEL</a>
               </div>
               <div class="mb-3">
-                <img src="{{ Storage::url($editingPhotograph->image_path) }}" class="img-fluid rounded" alt="Photo">
+                <img src="{{ asset('storage/' . $editingPhotograph->image_path) }}" class="img-fluid rounded" alt="Photo">
               </div>
               <form class="rich-us-form" method="POST" action="{{ route('admin.photographs.update', $editingPhotograph) }}" enctype="multipart/form-data">
                 @csrf
@@ -338,7 +365,7 @@
             @foreach ($photographs as $photo)
               <div class="col-6 col-md-4 col-lg-3">
                 <div class="card bg-dark border-secondary h-100">
-                  <img src="{{ Storage::url($photo->image_path) }}" class="card-img-top" alt="Photo">
+                  <img src="{{ asset('storage/' . $photo->image_path) }}" class="card-img-top" alt="Photo">
                   <div class="card-body">
                     <div class="small text-white-50 mb-2">{{ $photo->title }}</div>
                     <div class="d-grid gap-2">
@@ -590,7 +617,7 @@
                     <td style="max-width: 520px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ $richUsMessage->message }}</td>
                     <td>
                       @if ($richUsMessage->attachment_path)
-                        <a class="text-white text-decoration-none" href="{{ Storage::url($richUsMessage->attachment_path) }}" target="_blank" rel="noopener noreferrer">VIEW</a>
+                        <a class="text-white text-decoration-none" href="{{ asset('storage/' . $richUsMessage->attachment_path) }}" target="_blank" rel="noopener noreferrer">VIEW</a>
                       @else
                         —
                       @endif
