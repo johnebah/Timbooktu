@@ -5,10 +5,10 @@
 @section('content')
   @php
     $featuredImageUrl = isset($featuredPost) && $featuredPost?->image_path
-      ? asset('storage/' . $featuredPost->image_path)
+      ? asset('storage/app/public/' . $featuredPost->image_path)
       : asset('img/abt.jpeg');
     $featuredAudioUrl = isset($featuredPost) && $featuredPost?->audio_path
-      ? asset('storage/' . $featuredPost->audio_path)
+      ? asset('storage/app/public/' . $featuredPost->audio_path)
       : null;
     $featuredSubtitle = isset($featuredPost) && $featuredPost?->subtitle ? $featuredPost->subtitle : 'The Way Life Goes.';
     $featuredBody = isset($featuredPost) && $featuredPost?->body
@@ -63,7 +63,7 @@
             @foreach ($thoughts as $thought)
               @php
                 $thoughtImageUrl = $thought->image_path
-                  ? asset('storage/' . $thought->image_path)
+                  ? asset('storage/app/public/' . $thought->image_path)
                   : asset('img/thought-card1.png');
               @endphp
               <a class="carousel-item" href="{{ route('page.blog-detail.thought', $thought) }}">
@@ -105,7 +105,7 @@
           @if (isset($photographs) && $photographs->count())
             @foreach ($photographs as $photo)
               <div class="fotografie-item">
-                <img src="{{ asset('storage/' . $photo->image_path) }}" alt="{{ $photo->title ?: 'Photo' }}" />
+                <img src="{{ asset('storage/app/public/' . $photo->image_path) }}" alt="{{ $photo->title ?: 'Photo' }}" />
               </div>
             @endforeach
           @else
