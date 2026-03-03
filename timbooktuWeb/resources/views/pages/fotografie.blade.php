@@ -49,7 +49,7 @@
           if (! in_array($last, $range, true)) {
               $range[] = $last;
           }
-          $range = array-values(array_unique($range));
+          $range = array_values(array_unique($range));
           sort($range);
         @endphp
         <div class="d-flex flex-wrap justify-content-center gap-2 mt-5">
