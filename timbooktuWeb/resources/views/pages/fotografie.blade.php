@@ -29,7 +29,7 @@
                   : $photo->image_url;
               @endphp
               <div class="fotografie-card">
-                <img src="{{ $photoImageUrl }}" alt="{{ $photo->title ?: 'Photo' }}">
+                <img src="{{ $photoImageUrl }}" alt="{{ $photo->title ?: 'Photo' }}" data-bs-toggle="modal" data-bs-target="#imageModal" style="cursor: pointer;" onclick="document.getElementById('modalImage').src=this.src;">
               </div>
             @endforeach
           </div>
@@ -49,7 +49,7 @@
           if (! in_array($last, $range, true)) {
               $range[] = $last;
           }
-          $range = array_values(array_unique($range));
+          $range = array-values(array_unique($range));
           sort($range);
         @endphp
         <div class="d-flex flex-wrap justify-content-center gap-2 mt-5">
@@ -63,6 +63,20 @@
           <a class="read-more-pill pagination-pill @if (! $photographs->nextPageUrl()) disabled @endif" href="{{ $photographs->nextPageUrl() ?: '#' }}" tabindex="@if (! $photographs->nextPageUrl()) -1 @endif" aria-disabled="@if (! $photographs->nextPageUrl()) true @else false @endif">NEXT</a>
         </div>
       @endif
+    </div>
+
+    <!-- Image Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content bg-transparent border-0">
+          <div class="modal-header border-0 pb-0">
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center pt-0">
+            <img id="modalImage" src="" alt="Full Size Image" class="img-fluid rounded" style="max-height: 85vh; object-fit: contain;">
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 @endsection
