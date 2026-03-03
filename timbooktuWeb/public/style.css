@@ -1638,8 +1638,12 @@ html, body {
   .fotografie-item {
     flex: 0 0 100%;
     height: auto;
-    aspect-ratio: 1/1;
-    padding: 0 10px;
+  }
+
+  .fotografie-item img {
+    height: auto;
+    width: 100%;
+    aspect-ratio: 3/4;
   }
   .fotografie .section-title{
     font-size: 20px;;
