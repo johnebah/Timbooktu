@@ -316,7 +316,8 @@ body {
   margin-top: 15px;
   font-size: 16px;
   color: #fff;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Della Respira', serif;
+  font-weight: 700;
 }
 
 .carousel-btn {
@@ -454,17 +455,29 @@ body {
 .fotografie-item {
   flex: 0 0 400px;
   /* Fixed width */
-  height: 400px;
+  height: auto;
   border-radius: 20px;
   overflow: hidden;
+  text-align: center;
 }
 
 .fotografie-item img {
   width: 100%;
-  height: 100%;
+  height: 400px;
   object-fit: cover;
+  border-radius: 20px;
   transition: transform 0.3s;
+}
 
+.mobile-only-photo {
+  display: none !important;
+}
+
+.fotografie .carousel-label {
+  color: #000;
+  font-family: 'Della Respira', serif;
+  font-weight: 700;
+  margin-top: 15px;
 }
 
 .fotografie-item:hover img {
@@ -1020,7 +1033,7 @@ body {
   font-family: 'Della Respira', sans-serif;
   font-size: 18px;
   margin-bottom: 5px;
-  font-style: italic;
+  font-style: normal;
   font-weight: 300;
 }
 
@@ -1507,12 +1520,22 @@ body {
 .fotografie-card {
   background-color: transparent;
   padding: 20px;
+  flex-direction: column;
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   max-width: 350px;
-  aspect-ratio: 1/1;
+  height: auto;
+}
+
+.photograph-label {
+  margin-top: 15px;
+  font-family: 'Della Respira', serif;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
 }
 
 .fotografie-card img {
@@ -1579,7 +1602,7 @@ body {
   }
 
   .featured-quote blockquote {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.6;
     font-family: 'Della Respira', serif;
     /* Serif font for quote */
@@ -1723,10 +1746,15 @@ body {
     height: auto;
   }
 
+  .mobile-only-photo {
+    display: block !important;
+  }
+
   .fotografie-item img {
     height: auto;
     width: 100%;
     aspect-ratio: 3/4;
+    object-fit: cover;
   }
 
   .fotografie .section-title {

@@ -19,7 +19,7 @@ class HomeController extends Controller
                 ->orderByDesc('created_at')
                 ->take(4)
                 ->get(),
-            'photographs' => Photograph::query()->latest()->take(3)->get(),
+            'photographs' => Photograph::query()->latest()->take(6)->get(),
         ]);
     }
 }

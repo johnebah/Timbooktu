@@ -104,19 +104,35 @@
         <div class="fotografie-grid" id="photoCarousel">
           @if (isset($photographs) && $photographs->count())
             @foreach ($photographs as $photo)
-              <div class="fotografie-item">
+              <div class="fotografie-item {{ $loop->iteration > 3 ? 'mobile-only-photo' : '' }}">
                 <img src="{{ asset($photo->image_path) }}" alt="{{ $photo->title ?: 'Photo' }}" />
+                <p class="carousel-label">{{ $photo->title ?: 'Photo' }}</p>
               </div>
             @endforeach
           @else
             <div class="fotografie-item">
               <img src="{{ asset('img/image 92.png') }}" alt="Photo 1" />
+              <p class="carousel-label">Photo 1</p>
             </div>
             <div class="fotografie-item">
               <img src="{{ asset('img/image 96.png') }}" alt="Photo 2" />
+              <p class="carousel-label">Photo 2</p>
             </div>
             <div class="fotografie-item">
               <img src="{{ asset('img/image 97.png') }}" alt="Photo 3" />
+              <p class="carousel-label">Photo 3</p>
+            </div>
+            <div class="fotografie-item mobile-only-photo">
+              <img src="{{ asset('img/image 92.png') }}" alt="Photo 4" />
+              <p class="carousel-label">Photo 4</p>
+            </div>
+            <div class="fotografie-item mobile-only-photo">
+              <img src="{{ asset('img/image 96.png') }}" alt="Photo 5" />
+              <p class="carousel-label">Photo 5</p>
+            </div>
+            <div class="fotografie-item mobile-only-photo">
+              <img src="{{ asset('img/image 97.png') }}" alt="Photo 6" />
+              <p class="carousel-label">Photo 6</p>
             </div>
           @endif
         </div>

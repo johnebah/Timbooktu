@@ -6,7 +6,7 @@
   <section class="lacomposmentis-section">
     <div class="container">
       <h1 class="lacomposmentis-title">LA COMPOS MENTIS</h1>
-      <p class="lacomposmentis-subtitle">I Got, Like, Storey-High Piles Of Shit On My Mind Every Effin' Day That I Get To Tell Just Me. Now, I Get To Tell You.</p>
+      <p class="lacomposmentis-subtitle">Things I don't tell anyone. Turns out, I talk.</p>
 
       <div class="blog-grid">
         @forelse ($thoughts as $thought)

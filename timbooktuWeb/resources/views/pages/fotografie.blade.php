@@ -30,6 +30,7 @@
               @endphp
               <div class="fotografie-card">
                 <img src="{{ $photoImageUrl }}" alt="{{ $photo->title ?: 'Photo' }}" data-bs-toggle="modal" data-bs-target="#imageModal" style="cursor: pointer;" onclick="document.getElementById('modalImage').src=this.src;">
+                <p class="photograph-label">{{ $photo->title ?: 'Photo' }}</p>
               </div>
             @endforeach
           </div>
