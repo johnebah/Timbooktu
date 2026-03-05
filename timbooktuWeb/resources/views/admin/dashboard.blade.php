@@ -8,64 +8,44 @@
 @endphp
 
 @push('styles')
-  <link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet">
+  <style>
+    .tox-tinymce {
+      border-radius: 8px !important;
+      border: 1px solid #3E3E3A !important;
+    }
+    @media (max-width: 768px) {
+      .tox-tinymce {
+        height: 350px !important;
+      }
+    }
+  </style>
 @endpush
 
+
 @push('scripts')
-  <script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+  <script src="https://cdn.tiny.cloud/1/cqgpe4qmv55yhh32rm6wr4x1s1062rw0p5kjobcooaf6ytt0/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      var editors = document.querySelectorAll('[data-quill-input]');
-      editors.forEach(function (el) {
-        var inputId = el.getAttribute('data-quill-input');
-        var input = document.getElementById(inputId);
-        if (!input) return;
-
-        var quill = new Quill(el, {
-          theme: 'snow',
-          modules: {
-            toolbar: {
-              container: [
-                [{ header: [1, 2, 3, false] }],
-                ['bold', 'italic', 'underline', 'strike'],
-                [{ list: 'ordered' }, { list: 'bullet' }],
-                ['blockquote', 'link', 'image'],
-                ['clean']
-              ],
-              handlers: {
-                image: function () {
-                  var url = window.prompt('Image URL');
-                  if (!url) return;
-                  var range = quill.getSelection(true);
-                  quill.insertEmbed(range.index, 'image', url, 'user');
-                }
-              }
-            }
-          }
-        });
-
-        var initialHtml = el.getAttribute('data-quill-initial');
-        if (initialHtml) {
-          try {
-            initialHtml = JSON.parse(initialHtml);
-          } catch (e) {
-            initialHtml = '';
-          }
-        }
-
-        if (typeof initialHtml === 'string' && initialHtml.trim().length) {
-          quill.clipboard.dangerouslyPasteHTML(initialHtml);
-        }
-
-        var form = el.closest('form');
-        if (form) {
-          form.addEventListener('submit', function () {
-            input.value = quill.root.innerHTML;
-          });
+      tinymce.init({
+        selector: '.tinymce-editor',
+        license_key: 'gpl',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        height: 400,
+        menubar: false,
+        content_style: 'body { font-family: "Inter", sans-serif; font-size:16px; background-color: #1b1b18; color: #fff; }',
+        skin: 'oxide-dark',
+        content_css: 'dark',
+        mobile: {
+          menubar: false,
+          toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+          toolbar_mode: 'sliding',
+          height: 350
         }
       });
 
-      // Client-side file size validation
+
+      // Handle file size validation
       const maxImageSize = 4 * 1024 * 1024; // 4MB
       const maxAudioSize = 20 * 1024 * 1024; // 20MB
       const maxGenericSize = 10 * 1024 * 1024; // 10MB default
@@ -80,10 +60,10 @@
           const isImage = accept.includes('image');
           
           if (isImage && file.size > maxImageSize) {
-            alert('Image size exceeds the 4MB limit. Please select a smaller file. Large files may cause uploads to hang and fail silently.');
+            alert('Image size exceeds the 4MB limit. Please select a smaller file.');
             this.value = '';
           } else if (isAudio && file.size > maxAudioSize) {
-            alert('Audio size exceeds the 20MB limit. Please select a smaller file. Large files may cause uploads to hang and fail silently.');
+            alert('Audio size exceeds the 20MB limit. Please select a smaller file.');
             this.value = '';
           } else if (!isImage && !isAudio && file.size > maxGenericSize) {
             alert('File size exceeds the limit. Please select a smaller file.');
@@ -94,6 +74,7 @@
     });
   </script>
 @endpush
+
 
 @section('content')
   <section class="rich-us-section">
@@ -145,10 +126,10 @@
                   <input type="text" class="form-control" id="featured_subtitle" name="subtitle" value="{{ old('subtitle', $featuredPost->subtitle) }}">
                 </div>
                 <div class="mb-4">
-                  <label class="form-label text-white">Text</label>
-                  <input type="hidden" id="featured_body_input" name="body">
-                  <div class="form-control quill-editor" data-quill-input="featured_body_input" data-quill-initial='@json(old('body', $featuredPost->body))'></div>
+                  <label for="featured_body" class="form-label text-white">Text</label>
+                  <textarea id="featured_body" name="body" class="form-control tinymce-editor" rows="10">{{ old('body', $featuredPost->body) }}</textarea>
                 </div>
+
                 <div class="mb-4">
                   <label for="featured_image" class="form-label text-white">Image</label>
                   <input type="file" class="form-control" id="featured_image" name="image" accept="image/*">
@@ -186,15 +167,14 @@
                     <input type="date" class="form-control" id="thought_edit_published_at" name="published_at" value="{{ old('published_at', optional($editingThought->published_at)->format('Y-m-d')) }}">
                   </div>
                   <div class="col-12">
-                    <label class="form-label text-white">Excerpt</label>
-                    <input type="hidden" id="thought_edit_excerpt_input" name="excerpt">
-                    <div class="form-control quill-editor" data-quill-input="thought_edit_excerpt_input" data-quill-initial='@json(old('excerpt', $editingThought->excerpt))'></div>
+                    <label for="thought_edit_excerpt" class="form-label text-white">Excerpt</label>
+                    <textarea id="thought_edit_excerpt" name="excerpt" class="form-control tinymce-editor" rows="4">{{ old('excerpt', $editingThought->excerpt) }}</textarea>
                   </div>
                   <div class="col-12">
-                    <label class="form-label text-white">Body</label>
-                    <input type="hidden" id="thought_edit_body_input" name="body">
-                    <div class="form-control quill-editor" data-quill-input="thought_edit_body_input" data-quill-initial='@json(old('body', $editingThought->body))'></div>
+                    <label for="thought_edit_body" class="form-label text-white">Body</label>
+                    <textarea id="thought_edit_body" name="body" class="form-control tinymce-editor" rows="10">{{ old('body', $editingThought->body) }}</textarea>
                   </div>
+
                   <div class="col-12 col-lg-6">
                     <label for="thought_edit_image" class="form-label text-white">Image</label>
                     <input type="file" class="form-control" id="thought_edit_image" name="image" accept="image/*">
@@ -229,15 +209,14 @@
                 <input type="date" class="form-control" id="thought_published_at" name="published_at" value="{{ old('published_at') }}">
               </div>
               <div class="col-12">
-                <label class="form-label text-white">Excerpt</label>
-                <input type="hidden" id="thought_excerpt_input" name="excerpt">
-                <div class="form-control quill-editor" data-quill-input="thought_excerpt_input" data-quill-initial='@json(old('excerpt'))'></div>
+                <label for="thought_excerpt" class="form-label text-white">Excerpt</label>
+                <textarea id="thought_excerpt" name="excerpt" class="form-control tinymce-editor" rows="4">{{ old('excerpt') }}</textarea>
               </div>
               <div class="col-12">
-                <label class="form-label text-white">Body</label>
-                <input type="hidden" id="thought_body_input" name="body">
-                <div class="form-control quill-editor" data-quill-input="thought_body_input" data-quill-initial='@json(old('body'))'></div>
+                <label for="thought_body" class="form-label text-white">Body</label>
+                <textarea id="thought_body" name="body" class="form-control tinymce-editor" rows="10">{{ old('body') }}</textarea>
               </div>
+
               <div class="col-12">
                 <label for="thought_image" class="form-label text-white">Image</label>
                 <input type="file" class="form-control" id="thought_image" name="image" accept="image/*">

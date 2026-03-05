@@ -317,7 +317,6 @@ body {
   font-size: 16px;
   color: #fff;
   font-family: 'Della Respira', serif;
-  font-weight: 700;
 }
 
 .carousel-btn {
@@ -476,7 +475,6 @@ body {
 .fotografie .carousel-label {
   color: #000;
   font-family: 'Della Respira', serif;
-  font-weight: 700;
   margin-top: 15px;
 }
 
@@ -1815,11 +1813,27 @@ body {
     max-width: 200px;
   }
 
+  .fotografie .carousel-wrapper,
+  .our-thing .carousel-wrapper {
+    margin-bottom: 0px;
+  }
+
+  .fotografie .fotografie-grid,
+  .our-thing .fotografie-grid {
+    margin-bottom: 0px;
+  }
+
+  .view-all-btns {
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+
   @media (max-width: 768px) {
     .view-all-btn {
       width: auto;
       max-width: 200px;
-      margin-top: -30px;
+      margin-top: 40px;
+      margin-bottom: 0px;
     }
   }
 

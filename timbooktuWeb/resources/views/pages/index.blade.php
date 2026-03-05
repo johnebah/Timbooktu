@@ -149,13 +149,13 @@
         <button class="carousel-btn prev" id="ourThingPrevBtn">&#10094;</button>
         <div class="fotografie-grid" id="ourThingCarousel">
           <div class="fotografie-item">
-            <img src="{{ asset('img/thought-card1.png') }}" alt="Demo 1" />
+            <img src="{{ asset('img/t1.png') }}" alt="Demo 1" />
           </div>
           <div class="fotografie-item">
-            <img src="{{ asset('img/thought-card2.png') }}" alt="Demo 2" />
+            <img src="{{ asset('img/t2.png') }}" alt="Demo 2" />
           </div>
           <div class="fotografie-item">
-            <img src="{{ asset('img/thought-card3.png') }}" alt="Demo 3" />
+            <img src="{{ asset('img/t3.png') }}" alt="Demo 3" />
           </div>
         </div>
         <button class="carousel-btn next" id="ourThingNextBtn">&#10095;</button>

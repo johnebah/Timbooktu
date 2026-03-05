@@ -3,52 +3,45 @@
 @section('title', 'Guest Content - TIIMBOOKTU')
 
 @push('styles')
-  <link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet">
+  <style>
+    .tox-tinymce {
+      border-radius: 8px !important;
+      border: 1px solid #3E3E3A !important;
+    }
+    @media (max-width: 768px) {
+      .tox-tinymce {
+        height: 300px !important;
+      }
+    }
+  </style>
 @endpush
 
+
 @push('scripts')
-  <script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+  <script src="https://cdn.tiny.cloud/1/cqgpe4qmv55yhh32rm6wr4x1s1062rw0p5kjobcooaf6ytt0/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      var editorEl = document.getElementById('guest_post_editor');
-      var inputEl = document.getElementById('guest_post_body');
-      if (!editorEl || !inputEl) return;
-
-      var quill = new Quill(editorEl, {
-        theme: 'snow',
-        modules: {
-          toolbar: [
-            [{ header: [1, 2, 3, false] }],
-            ['bold', 'italic', 'underline', 'strike'],
-            [{ list: 'ordered' }, { list: 'bullet' }],
-            ['blockquote', 'link'],
-            ['clean']
-          ]
+      tinymce.init({
+        selector: '#guest_post_editor',
+        license_key: 'gpl',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        height: 400,
+        menubar: false,
+        content_style: 'body { font-family: "Inter", sans-serif; font-size:16px; background-color: #1b1b18; color: #fff; }',
+        skin: 'oxide-dark',
+        content_css: 'dark',
+        mobile: {
+          menubar: false,
+          toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+          toolbar_mode: 'sliding',
+          height: 300
         }
       });
-
-      var initialHtml = editorEl.getAttribute('data-quill-initial');
-      if (initialHtml) {
-        try {
-          initialHtml = JSON.parse(initialHtml);
-        } catch (e) {
-          initialHtml = '';
-        }
-      }
-
-      if (typeof initialHtml === 'string' && initialHtml.trim().length) {
-        quill.clipboard.dangerouslyPasteHTML(initialHtml);
-      }
-
-      var form = editorEl.closest('form');
-      if (form) {
-        form.addEventListener('submit', function () {
-          inputEl.value = quill.root.innerHTML;
-        });
-      }
     });
   </script>
 @endpush
+
 
 @section('content')
   <section class="guestnetno-section">
@@ -92,10 +85,10 @@
               <input type="text" class="form-control" id="guest_title" name="title" value="{{ old('title') }}" placeholder="Enter title" required>
             </div>
             <div class="mb-4">
-              <label class="form-label text-white">Text</label>
-              <input type="hidden" id="guest_post_body" name="body">
-              <div id="guest_post_editor" class="form-control quill-editor" data-quill-initial='@json(old('body'))'></div>
+              <label for="guest_post_editor" class="form-label text-white">Text</label>
+              <textarea id="guest_post_editor" name="body" class="form-control tinymce-editor" rows="10">{{ old('body') }}</textarea>
             </div>
+
             <button type="submit" class="rich-us-submit-btn">SEND</button>
           </form>
         </div>
