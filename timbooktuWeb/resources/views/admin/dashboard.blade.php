@@ -23,7 +23,7 @@
 
 
 @push('scripts')
-  <script src="https://cdn.tiny.cloud/1/cqgpe4qmv55yhh32rm6wr4x1s1062rw0p5kjobcooaf6ytt0/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
+  <script src="https://cdn.tiny.cloud/1/cqgpe4qmv55yhh32rm6wr4x1s1062rw0p5kjobcooaf6ytt0/tinymce/7/tinymce.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       tinymce.init({
