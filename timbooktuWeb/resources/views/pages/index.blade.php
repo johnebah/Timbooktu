@@ -148,19 +148,27 @@
       <div class="carousel-wrapper">
         <button class="carousel-btn prev" id="ourThingPrevBtn">&#10094;</button>
         <div class="fotografie-grid" id="ourThingCarousel">
-          <div class="fotografie-item">
-            <img src="{{ asset('img/t1.png') }}" alt="Demo 1" />
-          </div>
-          <div class="fotografie-item">
-            <img src="{{ asset('img/t2.png') }}" alt="Demo 2" />
-          </div>
-          <div class="fotografie-item">
-            <img src="{{ asset('img/t3.png') }}" alt="Demo 3" />
-          </div>
+          @if (isset($ourThings) && $ourThings->count())
+            @foreach ($ourThings as $item)
+              <div class="fotografie-item">
+                <img src="{{ asset($item->image_path) }}" alt="{{ $item->title ?: 'Our Thing' }}" />
+              </div>
+            @endforeach
+          @else
+            <div class="fotografie-item">
+              <img src="{{ asset('img/t1.png') }}" alt="Demo 1" />
+            </div>
+            <div class="fotografie-item">
+              <img src="{{ asset('img/t2.png') }}" alt="Demo 2" />
+            </div>
+            <div class="fotografie-item">
+              <img src="{{ asset('img/t3.png') }}" alt="Demo 3" />
+            </div>
+          @endif
         </div>
         <button class="carousel-btn next" id="ourThingNextBtn">&#10095;</button>
       </div>
-      <button class="view-all-btn">View All</button>
+      <a class="view-all-btn" href="{{ route('page.our-thing') }}">View All</a>
     </div>
   </section>
 

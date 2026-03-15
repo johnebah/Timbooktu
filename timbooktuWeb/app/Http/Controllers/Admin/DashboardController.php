@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\FeaturedPost;
 use App\Models\GuestPost;
+use App\Models\OurThing;
 use App\Models\Photograph;
 use App\Models\Review;
 use App\Models\RichUsMessage;
@@ -55,9 +56,14 @@ class DashboardController extends Controller
         return $this->dashboardView($request, 'richus');
     }
 
-    private function dashboardView(Request $request, string $activeSection, ?Thought $editingThought = null, ?Photograph $editingPhotograph = null)
+    public function ourThing(Request $request)
     {
-        $activeSection = in_array($activeSection, ['featured', 'thoughts', 'fotografie', 'comments', 'reviews', 'guestnetno', 'richus'], true) ? $activeSection : 'featured';
+        return $this->dashboardView($request, 'ourthing');
+    }
+
+    private function dashboardView(Request $request, string $activeSection, ?Thought $editingThought = null, ?Photograph $editingPhotograph = null, ?OurThing $editingOurThing = null)
+    {
+        $activeSection = in_array($activeSection, ['featured', 'thoughts', 'fotografie', 'comments', 'reviews', 'guestnetno', 'richus', 'ourthing'], true) ? $activeSection : 'featured';
 
         $featuredPost = FeaturedPost::query()->firstOrCreate([], [
             'title' => 'FEATURED POST',
@@ -74,8 +80,10 @@ class DashboardController extends Controller
             'reviews' => Review::query()->latest()->paginate(20)->withQueryString(),
             'guestPosts' => GuestPost::query()->latest()->paginate(20)->withQueryString(),
             'richUsMessages' => RichUsMessage::query()->latest()->paginate(20)->withQueryString(),
+            'ourThings' => OurThing::query()->latest()->paginate(12)->withQueryString(),
             'editingThought' => $editingThought,
             'editingPhotograph' => $editingPhotograph,
+            'editingOurThing' => $editingOurThing,
         ]);
     }
 
@@ -242,6 +250,56 @@ class DashboardController extends Controller
         $photograph->delete();
 
         return redirect()->route('admin.fotografie');
+    }
+
+    public function createOurThing(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => ['nullable', 'string', 'max:255'],
+            'image' => ['required', 'image', 'max:8192'],
+        ]);
+
+        $imagePath = Storage::disk('public')->putFile('uploads/ourthing', $request->file('image'));
+
+        OurThing::query()->create([
+            'title' => $validated['title'] ?? null,
+            'image_path' => $imagePath,
+        ]);
+
+        return redirect()->route('admin.ourthing');
+    }
+
+    public function editOurThing(Request $request, OurThing $ourThing)
+    {
+        return $this->dashboardView($request, 'ourthing', null, null, $ourThing);
+    }
+
+    public function updateOurThing(Request $request, OurThing $ourThing)
+    {
+        $validated = $request->validate([
+            'title' => ['nullable', 'string', 'max:255'],
+            'image' => ['nullable', 'image', 'max:8192'],
+        ]);
+
+        if ($request->hasFile('image')) {
+            Storage::disk('public')->delete($ourThing->image_path);
+            $validated['image_path'] = Storage::disk('public')->putFile('uploads/ourthing', $request->file('image'));
+        }
+
+        unset($validated['image']);
+
+        $ourThing->update($validated);
+
+        return redirect()->route('admin.ourthing');
+    }
+
+    public function deleteOurThing(OurThing $ourThing)
+    {
+        Storage::disk('public')->delete($ourThing->image_path);
+
+        $ourThing->delete();
+
+        return redirect()->route('admin.ourthing');
     }
 
     public function approveComment(Comment $comment)

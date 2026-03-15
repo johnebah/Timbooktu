@@ -98,6 +98,7 @@
         <a class="read-more-pill @if (($activeSection ?? 'featured') === 'reviews') active @endif" href="{{ route('admin.reviews') }}">REVIEWS</a>
         <a class="read-more-pill @if (($activeSection ?? 'featured') === 'richus') active @endif" href="{{ route('admin.rich-us') }}">RICH US</a>
         <a class="read-more-pill @if (($activeSection ?? 'featured') === 'guestnetno') active @endif" href="{{ route('admin.guestnetno') }}">GUEST CONTENT</a>
+        <a class="read-more-pill @if (($activeSection ?? 'featured') === 'ourthing') active @endif" href="{{ route('admin.ourthing') }}">OUR THING</a>
       </div>
 
       @if (($activeSection ?? 'featured') === 'featured')
@@ -754,6 +755,106 @@
                 <a class="read-more-pill pagination-pill @if ($page === $current) active @endif" href="{{ $guestPosts->url($page) }}">{{ $page }}</a>
               @endforeach
               <a class="read-more-pill pagination-pill @if (! $guestPosts->nextPageUrl()) disabled @endif" href="{{ $guestPosts->nextPageUrl() ?: '#' }}" tabindex="@if (! $guestPosts->nextPageUrl()) -1 @endif" aria-disabled="@if (! $guestPosts->nextPageUrl()) true @else false @endif">NEXT</a>
+            </div>
+          @endif
+        </div>
+      @endif
+
+      @if (($activeSection ?? 'featured') === 'ourthing')
+        <div class="rich-us-form-container mb-5">
+          <h2 class="rich-us-form-title">OUR THING</h2>
+          @if (isset($editingOurThing) && $editingOurThing)
+            <div class="mb-4 p-3 border border-secondary rounded">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="h5 mb-0 text-white">Edit Our Thing</h3>
+                <a class="read-more-pill" href="{{ route('admin.ourthing') }}">CANCEL</a>
+              </div>
+              <div class="mb-3 text-center">
+                <img src="{{ asset($editingOurThing->image_path) }}" class="img-fluid rounded" style="max-height: 200px;" alt="Our Thing">
+              </div>
+              <form class="rich-us-form" method="POST" action="{{ route('admin.ourthing.update', $editingOurThing) }}" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="row g-3">
+                  <div class="col-12 col-lg-6">
+                    <label for="ourthing_edit_title" class="form-label text-white">Title</label>
+                    <input type="text" class="form-control" id="ourthing_edit_title" name="title" value="{{ old('title', $editingOurThing->title) }}">
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <label for="ourthing_edit_image" class="form-label text-white">Replace Image</label>
+                    <input type="file" class="form-control" id="ourthing_edit_image" name="image" accept="image/*">
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <button type="submit" class="rich-us-submit-btn">UPDATE OUR THING</button>
+                </div>
+              </form>
+            </div>
+          @endif
+
+          <form class="rich-us-form mb-4" method="POST" action="{{ route('admin.ourthing.create') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="row g-3">
+              <div class="col-12 col-lg-6">
+                <label for="ourthing_title" class="form-label text-white">Title</label>
+                <input type="text" class="form-control" id="ourthing_title" name="title" value="{{ old('title') }}">
+              </div>
+              <div class="col-12 col-lg-6">
+                <label for="ourthing_image" class="form-label text-white">Image</label>
+                <input type="file" class="form-control" id="ourthing_image" name="image" accept="image/*" required>
+              </div>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="rich-us-submit-btn">UPLOAD OUR THING</button>
+            </div>
+          </form>
+
+          <div class="row g-3">
+            @foreach ($ourThings as $item)
+              <div class="col-6 col-md-4 col-lg-3">
+                <div class="card bg-dark border-secondary h-100">
+                  <img src="{{ asset($item->image_path) }}" class="card-img-top" alt="Our Thing">
+                  <div class="card-body">
+                    <div class="small text-white-50 mb-2">{{ $item->title ?: 'No Title' }}</div>
+                    <div class="d-grid gap-2">
+                      <a class="read-more-pill w-100 text-center" href="{{ route('admin.ourthing.edit', $item) }}">EDIT</a>
+                      <form method="POST" action="{{ route('admin.ourthing.delete', $item) }}" onsubmit="return confirm('Delete this item?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="read-more-pill w-100">DELETE</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endforeach
+          </div>
+
+          @if ($ourThings->lastPage() > 1)
+            @php
+              $current = $ourThings->currentPage();
+              $last = $ourThings->lastPage();
+              $start = max(1, $current - 2);
+              $end = min($last, $current + 2);
+              $range = range($start, $end);
+              if (! in_array(1, $range, true)) {
+                  array_unshift($range, 1);
+              }
+              if (! in_array($last, $range, true)) {
+                  $range[] = $last;
+              }
+              $range = array_values(array_unique($range));
+              sort($range);
+            @endphp
+            <div class="d-flex flex-wrap justify-content-center gap-2 mt-4">
+              <a class="read-more-pill pagination-pill @if (! $ourThings->previousPageUrl()) disabled @endif" href="{{ $ourThings->previousPageUrl() ?: '#' }}" tabindex="@if (! $ourThings->previousPageUrl()) -1 @endif" aria-disabled="@if (! $ourThings->previousPageUrl()) true @else false @endif">PREV</a>
+              @foreach ($range as $page)
+                @if ($loop->first === false && $page - $range[$loop->index - 1] > 1)
+                  <span class="read-more-pill pagination-pill disabled" aria-disabled="true">…</span>
+                @endif
+                <a class="read-more-pill pagination-pill @if ($page === $current) active @endif" href="{{ $ourThings->url($page) }}">{{ $page }}</a>
+              @endforeach
+              <a class="read-more-pill pagination-pill @if (! $ourThings->nextPageUrl()) disabled @endif" href="{{ $ourThings->nextPageUrl() ?: '#' }}" tabindex="@if (! $ourThings->nextPageUrl()) -1 @endif" aria-disabled="@if (! $ourThings->nextPageUrl()) true @else false @endif">NEXT</a>
             </div>
           @endif
         </div>

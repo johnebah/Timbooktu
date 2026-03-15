@@ -20,6 +20,7 @@ class HomeController extends Controller
                 ->take(4)
                 ->get(),
             'photographs' => Photograph::query()->latest()->take(6)->get(),
+            'ourThings' => \App\Models\OurThing::query()->latest()->take(6)->get(),
         ]);
     }
 }

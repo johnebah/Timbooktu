@@ -48,6 +48,11 @@ Route::get('/guestnetno', [GuestnetnoPageController::class, 'index'])->name('pag
 Route::post('/guestnetno/posts', [GuestnetnoPageController::class, 'store'])->name('page.guestnetno.posts.store');
 Route::get('/guestnetno/posts/{guestPost}', [GuestnetnoPageController::class, 'show'])->name('page.guestnetno.posts.show');
 Route::get('/fotografie', [FotografiePageController::class, 'index'])->name('page.fotografie');
+Route::get('/our-thing', function () {
+    return view('pages.our-thing', [
+        'ourThings' => \App\Models\OurThing::query()->latest()->paginate(12),
+    ]);
+})->name('page.our-thing');
 Route::view('/rich-us', 'pages.rich-us')->name('page.rich-us');
 Route::post('/rich-us/messages', function (Request $request) {
     $validated = $request->validate([
@@ -93,6 +98,7 @@ Route::middleware('admin')->group(function (): void {
     Route::get('/admin/reviews', [AdminDashboardController::class, 'reviews'])->name('admin.reviews');
     Route::get('/admin/guestnetno', [AdminDashboardController::class, 'guestnetno'])->name('admin.guestnetno');
     Route::get('/admin/rich-us', [AdminDashboardController::class, 'richUs'])->name('admin.rich-us');
+    Route::get('/admin/ourthing', [AdminDashboardController::class, 'ourThing'])->name('admin.ourthing');
     Route::post('/admin/featured', [AdminDashboardController::class, 'updateFeatured'])->name('admin.featured.update');
     Route::post('/admin/thoughts', [AdminDashboardController::class, 'createThought'])->name('admin.thoughts.create');
     Route::get('/admin/thoughts/{thought}/edit', [AdminDashboardController::class, 'editThought'])->name('admin.thoughts.edit');
@@ -113,6 +119,10 @@ Route::middleware('admin')->group(function (): void {
     Route::put('/admin/guest-posts/{guestPost}/approve', [AdminDashboardController::class, 'approveGuestPost'])->name('admin.guest-posts.approve');
     Route::put('/admin/guest-posts/{guestPost}/unapprove', [AdminDashboardController::class, 'unapproveGuestPost'])->name('admin.guest-posts.unapprove');
     Route::delete('/admin/guest-posts/{guestPost}', [AdminDashboardController::class, 'deleteGuestPost'])->name('admin.guest-posts.delete');
+    Route::post('/admin/ourthing', [AdminDashboardController::class, 'createOurThing'])->name('admin.ourthing.create');
+    Route::get('/admin/ourthing/{ourThing}/edit', [AdminDashboardController::class, 'editOurThing'])->name('admin.ourthing.edit');
+    Route::put('/admin/ourthing/{ourThing}', [AdminDashboardController::class, 'updateOurThing'])->name('admin.ourthing.update');
+    Route::delete('/admin/ourthing/{ourThing}', [AdminDashboardController::class, 'deleteOurThing'])->name('admin.ourthing.delete');
 });
 
 Route::redirect('/index.html', '/', 301);
