@@ -22,15 +22,15 @@
             <center><img src="{{ asset($thought->image_path) }}" alt="{{ $thought->title }}" class="img-fluid rounded mb-4" /></center>
           @endif
 
-          {!! $thought->body !!}
-
           @if ($thought->audio_path)
-            <div class="audio-player-container mt-4">
+            <div class="audio-player-container mt-4 mb-4">
               <audio class="w-100" controls preload="metadata">
                 <source src="{{ asset($thought->audio_path) }}" />
               </audio>
             </div>
           @endif
+
+          {!! $thought->body !!}
 
           <div class="mt-5">
             <h2 class="rich-us-form-title">COMMENTS.</h2>

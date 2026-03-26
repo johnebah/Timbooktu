@@ -2084,3 +2084,38 @@ body {
     text-align: center;
   }
 }
+
+/* Specific fix for "View All" button in Thoughts section on mobile */
+@media (max-width: 768px) {
+  .thoughts {
+    padding-bottom: 0 !important;
+  }
+
+  .thoughts .carousel-wrapper {
+    margin-bottom: 0 !important;
+  }
+
+  .thoughts .carousel {
+    padding-bottom: 0 !important;
+  }
+
+  .thoughts .carousel-item {
+    margin-bottom: 10px !important;
+  }
+
+  .thoughts .carousel-item:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .thoughts .carousel-label {
+    margin-bottom: 0 !important;
+    line-height: normal !important;
+  }
+
+  .thoughts .view-all-btn {
+    display: block !important;
+    width: fit-content !important;
+    margin: 40px auto 60px !important;
+    /* SYMMETRICAL 30px margin */
+  }
+}
