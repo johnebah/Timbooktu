@@ -25,7 +25,7 @@
         <div class="hero-image">
           <picture>
             <source media="(min-width: 992px)" srcset="{{ asset('img/hrss.jpeg') }}">
-            <img src="{{ asset('img/hr.jpeg') }}" alt="Hero Image" />
+            <img src="{{ asset('img/hr.png') }}" alt="Hero Image" />
           </picture>
         </div>
       </div>
