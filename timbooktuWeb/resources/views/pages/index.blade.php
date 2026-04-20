@@ -23,7 +23,10 @@
           <p class="hero-subtitle">&nbsp;tiimbooktu.art</p>
         </div>
         <div class="hero-image">
-          <img src="{{ asset('img/hr.jpeg') }}" alt="Hero Image" />
+          <picture>
+            <source media="(min-width: 992px)" srcset="{{ asset('img/hrss.jpeg') }}">
+            <img src="{{ asset('img/hr.jpeg') }}" alt="Hero Image" />
+          </picture>
         </div>
       </div>
     </div>
