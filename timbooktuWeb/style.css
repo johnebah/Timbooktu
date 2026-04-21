@@ -155,9 +155,9 @@ body {
 
 .hero-subtitle {
   font-size: 12px;
-  margin-top: 0px;
+  margin-top: 15px;
   color: #aaa;
-  font-family: 'Della Respira', serif;
+  font-family: 'DREAMING OUTLAND', sans-serif;
 }
 
 .hero-image {
@@ -1668,9 +1668,9 @@ body {
 
   .hero-subtitle {
     font-size: 12px;
-    margin-top: 0px;
+    margin-top: 15px;
     color: #d2cac1;
-    font-family: 'Della Respira', serif;
+    font-family: 'DREAMING OUTLAND', sans-serif;
   }
 
   .hero-image {
@@ -1809,6 +1809,8 @@ body {
   .hero-subtitle {
     font-size: 18px;
     text-align: left;
+    margin-top: 10px;
+    font-family: 'DREAMING OUTLAND', sans-serif;
   }
 
   .section-title {
