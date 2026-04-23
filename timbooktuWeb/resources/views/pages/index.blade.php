@@ -20,7 +20,7 @@
       <div class="hero-content">
         <div class="hero-text">
           <h1>WE 'RE:<br>NOT THEM.</h1>
-          <p class="hero-subtitle">&nbsp;STORIES x ALLIANCE x ART |CREATING TOGETHER</p>
+          <p class="hero-subtitle">&nbsp;STORIES &nbsp; x &nbsp;ALLIANCE &nbsp; x &nbsp;ART &nbsp;|&nbsp; CREATING &nbsp; TOGETHER</p>
         </div>
         <div class="hero-image">
           <picture>
